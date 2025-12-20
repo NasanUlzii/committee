@@ -1,0 +1,57 @@
+generator client {
+  provider               = "prisma-client"
+  output                 = "../generated/prisma"
+  moduleFormat           = "esm"
+  generatedFileExtension = "ts"
+  importFileExtension    = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Client {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  phone     String
+  relation  String
+  patients  Patient[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Patient {
+  id                     Int           @id @default(autoincrement())
+  name                   String
+  age                    String
+  gender                 String
+  client                 Client?       @relation(fields: [clientId], references: [id])
+  clientId               Int
+  email                  String
+  phone                  String
+  birthDate              DateTime
+  address                String
+  occupation             String
+  emergencyContactName   String
+  emergencyContactNumber String
+  allergies              String?
+  currentMedication      String?
+  appointments           Appointment[]
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
+}
+
+model Appointment {
+  id                 Int      @id @default(autoincrement())
+  patient            Patient  @relation(fields: [patientId], references: [id])
+  patientId          Int
+  primaryPhysician   String
+  schedule           DateTime
+  reason             String
+  note               String?
+  cancellationReason String?
+  status             String   @default("scheduled")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
