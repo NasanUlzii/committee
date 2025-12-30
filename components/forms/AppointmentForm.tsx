@@ -67,7 +67,7 @@ export const AppointmentForm = ({
         try {
             if (type === "create") {
                 const appointment = {
-                    patientId: 7,
+                    patientId: parseInt(userId),
                     primaryPhysician: values.primaryPhysician,
                     schedule: new Date(values.schedule),
                     reason: values.reason!,
@@ -77,7 +77,7 @@ export const AppointmentForm = ({
 
                 console.log("Submitting appointment:", appointment);
                 const newAppointment = await createAppointment(appointment);
-                userId = '7';
+                userId = userId;
                 if (newAppointment) {
                     form.reset();
                     router.push(

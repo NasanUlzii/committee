@@ -24,7 +24,7 @@ const PatientForm = () => {
     const form = useForm<z.infer<typeof ClientFormValidation>>({
         resolver: zodResolver(ClientFormValidation),
         defaultValues: {
-            relation: '',
+            relation: 'abc',
             name: '',
             email: '',
             phone: '',
@@ -36,18 +36,17 @@ const PatientForm = () => {
 
         try {
             const client = {
-                relation: values.relation,
+                relation: 'abc',
                 name: values.name,
                 email: values.email,
                 phone: values.phone,
             };
+            console.log('Client Data:', client);
+            const newTrustee = await createClient(client);
 
-            console.log('client', client);
-            const newClient = await createClient(client);
-
-            if (newClient) {
-                console.log('New Client', newClient);
-                router.push(`/patients/${newClient.id}/register`);
+            if (newTrustee) {
+                console.log('New Trustee', newTrustee);
+                router.push(`/trustee/${newTrustee.id}/register`);
             }
         } catch (error) {
             console.log(error);
@@ -61,57 +60,9 @@ const PatientForm = () => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
                 <section className='mb-12 space-y-4'>
                     <h1 className='header'>Hi there 👋</h1>
-                    <p className='text-dark-700'>Schedule your first appointment</p>
+                    <p className='text-dark-700'>Register for your new job</p>
                 </section>
-                <CustomFormField
-                    fieldType={FormFieldType.SKELETON}
-                    control={form.control}
-                    name="gender"
-                    label="Та хэнд захиалага хийж байна вэ?"
-                    renderSkeleton={(field) => (
-                        <FormControl>
-                            <RadioGroup
-                                className="flex h-11 gap-6 xl:justify-between"
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                            >
-                                {ClientOptions.map((option, i) => (
-                                    <div key={option + i} className="radio-group">
-                                        <RadioGroupItem value={option} id={option} />
-                                        <Label htmlFor={option} className="cursor-pointer">
-                                            {option}
-                                        </Label>
-                                    </div>
-                                ))}
-                            </RadioGroup>
-                        </FormControl>
-                    )}
-                />
 
-                <CustomFormField
-                    fieldType={FormFieldType.SKELETON}
-                    control={form.control}
-                    name="relation"
-                    label="Танд ямар хамааралтай хүн бэ?"
-                    renderSkeleton={(field) => (
-                        <FormControl>
-                            <RadioGroup
-                                className="flex h-11 gap-6 xl:justify-between"
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                            >
-                                {RelationOptions.map((option, i) => (
-                                    <div key={option + i} className="radio-group">
-                                        <RadioGroupItem value={option} id={option} />
-                                        <Label htmlFor={option} className="cursor-pointer">
-                                            {option}
-                                        </Label>
-                                    </div>
-                                ))}
-                            </RadioGroup>
-                        </FormControl>
-                    )}
-                />
                 <CustomFormField
                     fieldType={FormFieldType.INPUT}
                     control={form.control}

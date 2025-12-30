@@ -6,8 +6,6 @@ import RegisterForm from '@/components/forms/RegisterForm';
 const Register = () => {
 
     const { userId } = useParams();
-    //const user = await getUser(userId);
-    console.log('userId', userId);
     return (
         <div className="flex h-screen max-h-screen">
             <section className="remove-scrollbar container mx-12">
@@ -19,7 +17,7 @@ const Register = () => {
                         alt="patient"
                         className="mb-12 h-10 w-fit" />
 
-                    <RegisterForm />
+                    <RegisterForm userId={userId as string} />
 
                     <p className="copyright py-12">
                         © 2025 Mediks

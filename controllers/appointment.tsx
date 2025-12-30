@@ -22,5 +22,7 @@ export async function getAppointment(appointmentId: any) {
     const appointment = await prisma.appointment.findUnique({
         where: { id: appointmentId },
     });
-    return appointment;
+
+    const newAppointment = appointment?.primaryPhysician
+    return newAppointment;
 }

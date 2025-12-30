@@ -118,3 +118,16 @@ export function getAppointmentSchema(type: string) {
             return ScheduleAppointmentSchema;
     }
 }
+
+export const TrusteeFormValidation = z.object({
+    completed: z.object({ completed: z.literal(false) }),
+    lastName: z.string().min(2, {
+        message: "Name must be at least 2 characters.",
+    }).max(50, { message: "Name must be at most 50", }),
+    firstName: z.string().min(2, {
+        message: "Name must be at least 2 characters.",
+    }).max(50, { message: "Name must be at most 50", }), email: z.email({ message: "Invalid email address", }),
+    phone: z.string().refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number")
+})
+
+export type TrusteeFormValidationType = z.infer<typeof TrusteeFormValidation>;

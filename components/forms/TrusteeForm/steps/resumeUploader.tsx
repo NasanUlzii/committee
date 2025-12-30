@@ -1,0 +1,50 @@
+//import DropzoneInput from "@/components/ui/dropzone";
+import {
+    FormControl,
+    FormField,
+    FormItem,
+    FormMessage,
+} from "@/components/ui/form";
+import { TrusteeFormValidationType } from "@/lib/validation";
+// import {
+//     FormSchemaType,
+//     MAX_FILES,
+//     MAX_RESUME_SIZE_IN_BYTES,
+//     VALID_RESUME_FILE_EXTENSIONS,
+// } from "@/libs/";
+import React from "react";
+import { useFormContext } from "react-hook-form";
+
+const ResumeUploader = () => {
+    const [value, setValue] = React.useState<File[]>([]);
+
+    const { control, getFieldState, formState } =
+        useFormContext<TrusteeFormValidationType>();
+
+    return (
+        <div>
+            {/* <FormField
+                control={control}
+                name="resume"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormControl>
+                            <DropzoneInput
+                                value={field.value ?? []}
+                                onValueChange={field.onChange}
+                                maxFiles={MAX_FILES}
+                                allowedExtensions={VALID_RESUME_FILE_EXTENSIONS}
+                                maxSizeInBytes={MAX_RESUME_SIZE_IN_BYTES}
+                                multiple={MAX_FILES > 1}
+                            />
+                        </FormControl>
+
+                        <FormMessage />
+                    </FormItem>
+                )}
+            /> */}
+        </div>
+    );
+};
+
+export default ResumeUploader;

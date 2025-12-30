@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -29,10 +29,12 @@ import SubmitButton from "../SubmitButton";
 import { PatientFormValidation } from "@/lib/validation";
 import { registerPatient } from "@/controllers/patient";
 
-const RegisterForm = () => {
+const RegisterForm = ({ userId }:
+    { userId: string }
+) => {
 
     const router = useRouter();
-
+    //const { userId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
 
     const form = useForm<z.infer<typeof PatientFormValidation>>({
@@ -44,7 +46,7 @@ const RegisterForm = () => {
 
     const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
         setIsLoading(true);
-        console.log('Values', values);
+        console.log('Values', userId);
         // Store file info in form data as
         //let formData;
         //if (
@@ -73,7 +75,7 @@ const RegisterForm = () => {
                 occupation: values.occupation,
                 emergencyContactName: values.emergencyContactName,
                 emergencyContactNumber: values.emergencyContactNumber,
-                clientId: 4,
+                clientId: parseInt(userId),
                 // primaryPhysician: values.primaryPhysician,
                 // insuranceProvider: values.insuranceProvider,
                 // insurancePolicyNumber: values.insurancePolicyNumber,
@@ -155,6 +157,7 @@ const RegisterForm = () => {
                             fieldType={FormFieldType.DATE_PICKER}
                             control={form.control}
                             name="birthDate"
+                            showTimeSelect
                             label="Date of birth"
                         />
                         <CustomFormField

@@ -1,11 +1,13 @@
+'use client';
 import Image from "next/image";
 
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
+import { useParams } from "next/navigation";
 
-const NewAppointment = async ({ params: { patientId } }: SearchParamProps) => {
+const NewAppointment = () => {
 
     //const patient = await getPatient(patientId);
-
+    const { userId } = useParams();
     return (
         <div className="flex h-screen max-h-screen">
             <section className="remove-scrollbar container my-auto">
@@ -19,7 +21,7 @@ const NewAppointment = async ({ params: { patientId } }: SearchParamProps) => {
                     />
 
                     <AppointmentForm
-                        userId={patientId}
+                        userId={userId as string}
                         type="create"
                     />
 

@@ -1,3 +1,6 @@
+'use client'
+
+import { useSearchParams } from 'next/navigation'
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,16 +9,17 @@ import { Doctors } from "@/constants";
 import { formatDateTime } from "@/lib/utils";
 import { getAppointment } from "@/controllers/appointment";
 
-const RequestSuccess = async ({ searchParams }: { searchParams?: { appointmentId?: string } }) => {
+const RequestSuccess = () => {
+    const searchParams = useSearchParams()
+
+    const search = searchParams.get('appointmentId')
 
 
-    //const appointmentId = (appointmentId as string) || "";
-
-    const appointment = await getAppointment(2);
-
-    const doctor = Doctors.find(
-        (doctor) => doctor.name === appointment?.primaryPhysician
-    );
+    const appointment = getAppointment(parseInt(search!) || 0);
+    console.log(' - - - - - ', appointment);
+    // const doctor = Doctors.find(
+    //     (doctor) => doctor.name === appointment?.primaryPsy
+    // );
 
     return (
         <div className=" flex h-screen max-h-screen px-[5%]">
@@ -47,14 +51,14 @@ const RequestSuccess = async ({ searchParams }: { searchParams?: { appointmentId
                 <section className="request-details">
                     <p>Requested appointment details: </p>
                     <div className="flex items-center gap-3">
-                        <Image
+                        {/* <Image
                             src={doctor?.image!}
                             alt="doctor"
                             width={100}
                             height={100}
                             className="size-6"
                         />
-                        <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
+                        <p className="whitespace-nowrap">Dr. {doctor?.name}</p> */}
                     </div>
                     <div className="flex gap-2">
                         <Image
@@ -63,7 +67,7 @@ const RequestSuccess = async ({ searchParams }: { searchParams?: { appointmentId
                             width={24}
                             alt="calendar"
                         />
-                        {/* <p> {formatDateTime(appointment.schedule).dateTime}</p> */}
+                        {/* <p> {appointment?.schedule}</p> */}
                     </div>
                 </section>
 
