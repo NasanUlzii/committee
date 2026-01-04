@@ -3,7 +3,6 @@
 import { prisma } from "@/prisma/prisma";
 
 export async function createClient(clientData: any) {
-    console.log('Creating client with data:', clientData);
     const newClient = await prisma.client.create({
         data: clientData,
     });
@@ -11,9 +10,16 @@ export async function createClient(clientData: any) {
 }
 
 export async function createTrustee(trusteeData: any) {
-    console.log('Creating trustee with data:', trusteeData);
     const newTrustee = await prisma.trustee.create({
         data: trusteeData,
+    });
+    return newTrustee;
+}
+
+export async function getTrustee(userId: string) {
+    const newTrustee = await prisma.trustee.findUnique({
+        where: { id: parseInt(userId) },
+
     });
     return newTrustee;
 }

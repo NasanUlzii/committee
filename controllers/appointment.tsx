@@ -3,7 +3,6 @@
 import { prisma } from "@/prisma/prisma";
 
 export async function createAppointment(appointment: any) {
-    console.log("Creating appointment with data:", appointment);
     const newAppointment = await prisma.appointment.create({
         data: appointment,
     });

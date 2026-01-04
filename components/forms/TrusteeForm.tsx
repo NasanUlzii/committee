@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TrusteeFormValidation } from '@/lib/validation';
 import {
@@ -11,11 +10,8 @@ import {
 import CustomFormField, { FormFieldType } from '../CustomFormField';
 import SubmitButton from '../SubmitButton';
 import { useRouter } from 'next/navigation';
-import { createClient, createTrustee } from '@/controllers/client';
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
-import { ClientOptions, GenderOptions, RelationOptions } from '@/constants';
-import { Label } from '../ui/label';
-
+import { createTrustee } from '@/controllers/client';
+import * as z from 'zod'
 const TrusteeForm = () => {
 
     const router = useRouter();
@@ -25,8 +21,8 @@ const TrusteeForm = () => {
         resolver: zodResolver(TrusteeFormValidation),
         defaultValues: {
             completed: { completed: false },
-            name: '',
-            email: '',
+            lastName: '',
+            firstName: '',
             phone: '',
         },
     })
@@ -36,16 +32,14 @@ const TrusteeForm = () => {
 
         try {
             const client = {
-                //completed: values.completed,
-                name: values.name,
-                email: values.email,
+                completed: false,
+                lastName: values.lastName,
+                firstName: values.firstName,
                 phone: values.phone,
             };
-            console.log('Client Data:', client);
             const newTrustee = await createTrustee(client);
 
             if (newTrustee) {
-                console.log('New Trustee', newTrustee);
                 router.push(`/trustee/${newTrustee.id}/register`);
             }
         } catch (error) {
@@ -66,28 +60,28 @@ const TrusteeForm = () => {
                 <CustomFormField
                     fieldType={FormFieldType.INPUT}
                     control={form.control}
-                    name="name"
-                    label="Full name"
-                    placeholder="John Doe"
+                    name="lastName"
+                    label="Овог"
+                    placeholder="овог нэр"
                     iconSrc="/assets/icons/user.svg"
                     iconAlt="user"
                 />
                 <CustomFormField
                     fieldType={FormFieldType.INPUT}
                     control={form.control}
-                    name="email"
-                    label="Email"
-                    placeholder="johndoe@gmail.com"
-                    iconSrc="/assets/icons/email.svg"
-                    iconAlt="email"
+                    name="firstName"
+                    label="Нэр"
+                    placeholder="өөрийн нэр"
+                    iconSrc="/assets/icons/user.svg"
+                    iconAlt="user"
                 />
 
                 <CustomFormField
                     fieldType={FormFieldType.PHONE_INPUT}
                     control={form.control}
                     name="phone"
-                    label="Phone number"
-                    placeholder="(555) 123-4567"
+                    label="Утасны дугаар"
+                    placeholder="(99) 99 99 99 99"
                 />
 
                 <SubmitButton className='bg-green-800 rounded-full w-full' isLoading={isLoading}>Get Started</SubmitButton>

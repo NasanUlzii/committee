@@ -41,12 +41,12 @@ const PatientForm = () => {
                 email: values.email,
                 phone: values.phone,
             };
-            console.log('Client Data:', client);
-            const newTrustee = await createClient(client);
 
-            if (newTrustee) {
-                console.log('New Trustee', newTrustee);
-                router.push(`/trustee/${newTrustee.id}/register`);
+            const newPatient = await createClient(client);
+
+            if (newPatient) {
+
+                router.push(`/patients/${newPatient.id}/register`);
             }
         } catch (error) {
             console.log(error);

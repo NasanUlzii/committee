@@ -74,8 +74,6 @@ export const AppointmentForm = ({
                     status: status as Status,
                     note: values.note,
                 };
-
-                console.log("Submitting appointment:", appointment);
                 const newAppointment = await createAppointment(appointment);
                 userId = userId;
                 if (newAppointment) {

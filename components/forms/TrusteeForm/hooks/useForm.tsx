@@ -20,6 +20,7 @@ const FormControlsContext = createContext<FormControlsContextProps | undefined>(
 interface FormControlsProviderProps {
     children: React.ReactNode;
     steps: Step[];
+    userId: string;
 }
 
 export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ children, steps }) => {
@@ -27,7 +28,6 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ chil
     const [historicPageIndex, setHistoricPageIndex] = useState<number>(0);
 
     const delta = currentPageIndex - historicPageIndex;
-
     const handleNext = () => {
         if (currentPageIndex === steps.length - 1) return;
         setCurrentPageIndex(currentPageIndex + 1);

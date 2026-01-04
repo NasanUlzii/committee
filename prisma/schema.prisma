@@ -58,8 +58,8 @@ model Appointment {
 
 model Trustee {
   id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
+  firstName String
+  lastName  String   @unique
   phone     String
   completed Boolean  @default(false)
   createdAt DateTime @default(now())

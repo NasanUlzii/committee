@@ -11,6 +11,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import NavContainer from "@/components/Navbar/NavContainer";
 
 const fontJakarta = Plus_Jakarta_Sans(
   {
@@ -39,6 +40,7 @@ export default function RootLayout({
             attribute="class"
             defaultTheme="dark"
             enableSystem={false}>
+            <NavContainer />
             {children}
           </ThemeProvider>
         </body>

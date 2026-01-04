@@ -9,9 +9,8 @@ import { BiSolidBusiness } from 'react-icons/bi'
 export default function TrusteeHome() {
 
     return (
-        <section className="grid p-12 gap-8 md:items-center md:grid-cols-2">
-            <div>
-
+        <div className="flex flex-col md:flex-row md:items-start md:gap-8">
+            <div className="flex-1 flex flex-col items-center mt-8">
                 <div className='flex items-center space-x-2'>
                     <div className='w-10 h-10 bg-[#b69974] rounded-full flex items-center justify-center flex-col'>
                         <BiSolidBusiness className='w-10 h-10 text-white' />
@@ -20,7 +19,7 @@ export default function TrusteeHome() {
                 </div>
                 <TrusteeForm />
             </div>
-            <div>
+            <div className="flex-1 flex items-start justify-center mt-8 md:mr-8">
                 <Image
                     src="/assets/images/onboarding-img.png"
                     alt="patient"
@@ -28,6 +27,6 @@ export default function TrusteeHome() {
                     width={1000}
                     className="w-full rounded-lg" />
             </div>
-        </section>
+        </div>
     );
 }

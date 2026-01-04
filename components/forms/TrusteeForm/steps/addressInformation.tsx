@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Country, countryNames } from "@/lib/countries";
 import { fetchAddress } from "@/lib/utils";
-import { TrusteeFormValidationType } from "@/lib/validation";
+import { TrusteeExtendedValidationType, TrusteeFormValidationType } from "@/lib/validation";
 import { set } from "date-fns";
 import { Loader2, MapPin } from "lucide-react";
 import React, { useState } from "react";
@@ -27,14 +27,14 @@ import {
 } from "react-hook-form";
 
 const AddressInformation = () => {
-    const [isAutoFillActive, setIsAutoFillActive] = useState(false);
-    const { control, setValue } = useFormContext<TrusteeFormValidationType>();
+    {/*const [isAutoFillActive, setIsAutoFillActive] = useState(false);*/ }
+    const { control, setValue } = useFormContext<TrusteeExtendedValidationType>();
 
-    const { country, state } = useWatch({
+    {/*const { country, state } = useWatch({
         control,
-    });
+    });*/}
 
-    const handleAutoFill = async () => {
+    {/* const handleAutoFill = async () => {
         try {
             setIsAutoFillActive(true);
 
@@ -58,7 +58,7 @@ const AddressInformation = () => {
         }
     };
 
-    const onCountryChange = (
+    {/*const onCountryChange = (
         value: string,
         field: ControllerRenderProps<TrusteeFormValidationType, "country">
     ) => {
@@ -66,14 +66,14 @@ const AddressInformation = () => {
         setValue("state", "");
         setValue("city", "");
     };
-
-    const onStateChange = (
+*/}
+    {/*const onStateChange = (
         value: string,
         field: ControllerRenderProps<TrusteeFormValidationType, "state">
     ) => {
         field.onChange(value);
         setValue("city", "");
-    };
+    };*/}
 
     return (
         <div className="w-full grid grid-cols-12 gap-4 ">
@@ -95,16 +95,16 @@ const AddressInformation = () => {
                             </FormControl>
                             <Button
                                 type="button"
-                                onClick={handleAutoFill}
-                                disabled={isAutoFillActive}
-                                aria-busy={isAutoFillActive}
-                                aria-label="Autofill address"
+                            //onClick={handleAutoFill}
+                            //disabled={isAutoFillActive}
+                            //aria-busy={isAutoFillActive}
+                            //aria-label="Autofill address"
                             >
-                                {isAutoFillActive ? (
+                                {/*{isAutoFillActive ? (
                                     <Loader2 className="animate-spin h-4 w-4" />
                                 ) : (
                                     <MapPin className="h-4 w-4" />
-                                )}
+                                )}*/}
                             </Button>
                         </div>
 
@@ -112,7 +112,7 @@ const AddressInformation = () => {
                     </FormItem>
                 )}
             />
-            <div className="space-y-2 col-span-4">
+            {/* <div className="space-y-2 col-span-4">
                 <FormField
                     control={control}
                     name="country"
@@ -210,48 +210,7 @@ const AddressInformation = () => {
                     )}
                 />
             </div>
-            <div className="space-y-2 col-span-6">
-                <FormField
-                    control={control}
-                    name="zip"
-                    render={({ field }) => (
-                        <FormItem className="space-y-3">
-                            <FormLabel className="flex items-center">
-                                ZIP/Postal Code
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                    type="text"
-                                    placeholder="Enter your ZIP/Postal code"
-                                    id="zip"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-            </div>
-            <div className="space-y-2 col-span-6">
-                <FormField
-                    control={control}
-                    name="timezone"
-                    render={({ field }) => (
-                        <FormItem className="space-y-3">
-                            <FormLabel className="flex items-center">Timezone</FormLabel>
-                            <FormControl>
-                                <Input
-                                    disabled
-                                    id="timezone"
-                                    placeholder="Enter your Timezone"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-            </div>
+            */}
         </div>
     );
 };

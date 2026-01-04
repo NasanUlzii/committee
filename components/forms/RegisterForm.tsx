@@ -46,7 +46,6 @@ const RegisterForm = ({ userId }:
 
     const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
         setIsLoading(true);
-        console.log('Values', userId);
         // Store file info in form data as
         //let formData;
         //if (
@@ -93,7 +92,6 @@ const RegisterForm = ({ userId }:
             const patient = await registerPatient(patientToCreate);
 
             if (patient) {
-                console.log('newPatient', patient);
                 router.push(`/patients/${patient.id}/new-appointment`);
             }
         } catch (error) {

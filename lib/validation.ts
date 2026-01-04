@@ -126,8 +126,17 @@ export const TrusteeFormValidation = z.object({
     }).max(50, { message: "Name must be at most 50", }),
     firstName: z.string().min(2, {
         message: "Name must be at least 2 characters.",
-    }).max(50, { message: "Name must be at most 50", }), email: z.email({ message: "Invalid email address", }),
+    }).max(50, { message: "Name must be at most 50", }),
     phone: z.string().refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number")
 })
+export const TrusteeExtendedValidation = z.object({
+    completed: z.object({ completed: z.literal(false) }),
+    email: z.string().email("Invalid email address"),
+    address: z.string().min(5, "Address must be at least 5 characters")
+        .max(500, "Address must be at most 500 characters")
+})
 
-export type TrusteeFormValidationType = z.infer<typeof TrusteeFormValidation>;
+export type TrusteeFormValidationType = z.infer<typeof TrusteeFormValidation>
+
+export type TrusteeExtendedValidationType = z.infer<typeof TrusteeExtendedValidation>
+
