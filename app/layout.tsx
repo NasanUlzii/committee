@@ -12,6 +12,8 @@ import {
   UserButton,
 } from '@clerk/nextjs'
 import NavContainer from "@/components/Navbar/NavContainer";
+import Footer from "@/components/home/Footer/Footer";
+import ScrollToTop from "@/components/helper/ScrollToTop";
 
 const fontJakarta = Plus_Jakarta_Sans(
   {
@@ -42,6 +44,8 @@ export default function RootLayout({
             enableSystem={false}>
             <NavContainer />
             {children}
+            <Footer />
+            <ScrollToTop />
           </ThemeProvider>
         </body>
       </html>

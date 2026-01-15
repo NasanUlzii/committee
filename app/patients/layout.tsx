@@ -5,9 +5,7 @@ export default function PatientsLayout({
 }) {
     return (
         <>
-            <h1 className="header">New Appointment</h1>
-
-            <div className="h-screen max-h-screen">
+            <div>
                 {children}
             </div>
         </>

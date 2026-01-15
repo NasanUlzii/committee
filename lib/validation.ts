@@ -11,7 +11,11 @@ export const ClientFormValidation = z.object({
 })
 
 export const PatientFormValidation = z.object({
-    name: z
+    lastName: z
+        .string()
+        .min(2, "Name must be at least 2 characters")
+        .max(50, "Name must be at most 50 characters"),
+    firstName: z
         .string()
         .min(2, "Name must be at least 2 characters")
         .max(50, "Name must be at most 50 characters"),
@@ -22,9 +26,13 @@ export const PatientFormValidation = z.object({
     birthDate: z.date().refine((date) => date <= new Date(), {
         message: "Birth date cannot be in the future",
     }),
-    age: z.string(),
+    //age: z.string(),
     //coerce.number().min(0, "Age cannot be negative").max(120, "Age seems invalid"),
     gender: z.enum(["Male", "Female"]),
+    regNumber:
+        z.string()
+            .min(2, "Name must be at least 2 characters")
+            .max(50, "Name must be at most 50 characters"),
     address: z
         .string()
         .min(5, "Address must be at least 5 characters")

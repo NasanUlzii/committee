@@ -1,7 +1,7 @@
 'use client'
 
 import Nav from './Nav'
-//import MobileNav from './MobileNav'
+import MobileNav from './MobileNav'
 import { use, useState } from 'react'
 
 const NavContainer = () => {
@@ -12,11 +12,11 @@ const NavContainer = () => {
     const openNavHandler = () => { setShowNav(true); }
     // Open nav function
 
-    const closeNavHandler = () => { setShowNav(true); }
+    const closeNavHandler = () => { setShowNav(false); }
     return (
         <div>
             <Nav openNav={openNavHandler} />
-            {/* <MobileNav showNav={showNav} closeNav={closeNavHandler} /> */}
+            <MobileNav showNav={showNav} closeNav={closeNavHandler} />
         </div>
     )
 }

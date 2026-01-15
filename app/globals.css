@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@layer theme {}
+
+@layer base {}
+
+@layer components {}
+
+@layer utilities {}

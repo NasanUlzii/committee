@@ -19,8 +19,6 @@ import {
     PatientFormDefaultValues,
 } from "@/constants";
 
-//import { PatientFormValidation } from "@/lib/validation";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
@@ -64,12 +62,13 @@ const RegisterForm = ({ userId }:
         try {
             const patientToCreate = {
                 //userId: user.$id,
-                name: values.name,
+                lastName: values.lastName,
+                firstName: values.firstName,
                 email: values.email,
                 phone: values.phone,
                 birthDate: new Date(values.birthDate),
-                age: values.age,
                 gender: values.gender,
+                regNumber: values.regNumber,
                 address: values.address,
                 occupation: values.occupation,
                 emergencyContactName: values.emergencyContactName,
@@ -105,31 +104,36 @@ const RegisterForm = ({ userId }:
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex-1 space-y-12"
+                className=""
             >
-                <section className="mb-12 space-y-4">
-                    <h1 className="header">Welcome 👋</h1>
-                    <p className="text-dark-700">Let us know more about yourself.</p>
-                </section>
 
-                <section className="space-y-6">
-                    <div className="mb-9 space-y-1">
-                        <h2 className="sub-header">Personal Information</h2>
-                    </div>
+
+                <section>
 
                     {/* NAME */}
-
-                    <CustomFormField
-                        fieldType={FormFieldType.INPUT}
-                        control={form.control}
-                        name="name"
-                        placeholder="John Doe"
-                        iconSrc="/assets/icons/user.svg"
-                        iconAlt="user"
-                    />
+                    <div className="flex mt-6">
+                        <CustomFormField
+                            fieldType={FormFieldType.INPUT}
+                            control={form.control}
+                            name="lastName"
+                            label="Овог нэр"
+                            placeholder="овог нэр"
+                            iconSrc="/assets/icons/user.svg"
+                            iconAlt="user"
+                        />
+                        <CustomFormField
+                            fieldType={FormFieldType.INPUT}
+                            control={form.control}
+                            name="firstName"
+                            label="Оноосон нэр"
+                            placeholder="John Doe"
+                            iconSrc="/assets/icons/user.svg"
+                            iconAlt="user"
+                        />
+                    </div>
 
                     {/* EMAIL & PHONE */}
-                    <div className="flex flex-col gap-6 xl:flex-row">
+                    <div className="flex">
                         <CustomFormField
                             fieldType={FormFieldType.INPUT}
                             control={form.control}
@@ -138,6 +142,15 @@ const RegisterForm = ({ userId }:
                             placeholder="johndoe@gmail.com"
                             iconSrc="/assets/icons/email.svg"
                             iconAlt="email"
+                        />
+                        <CustomFormField
+                            fieldType={FormFieldType.INPUT}
+                            control={form.control}
+                            name="regNumber"
+                            label="Reg number"
+                            placeholder="johndoe@gmail.com"
+                            iconSrc="/assets/icons/email.svg"
+                            iconAlt="reg"
                         />
 
                         <CustomFormField
@@ -150,19 +163,13 @@ const RegisterForm = ({ userId }:
                     </div>
 
                     {/* BirthDate & Gender */}
-                    <div className="flex flex-col gap-6 xl:flex-row">
+                    <div className="flex mt-6">
                         <CustomFormField
                             fieldType={FormFieldType.DATE_PICKER}
                             control={form.control}
                             name="birthDate"
                             showTimeSelect
                             label="Date of birth"
-                        />
-                        <CustomFormField
-                            fieldType={FormFieldType.INPUT}
-                            control={form.control}
-                            name="age"
-                            label="Age"
                         />
 
                         <CustomFormField
@@ -192,7 +199,7 @@ const RegisterForm = ({ userId }:
                     </div>
 
                     {/* Address & Occupation */}
-                    <div className="flex flex-col gap-6 xl:flex-row">
+                    <div className="flex mt-6">
                         <CustomFormField
                             fieldType={FormFieldType.INPUT}
                             control={form.control}
