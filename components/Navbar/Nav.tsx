@@ -10,8 +10,8 @@ type Props = {
 
 const Nav = ({ openNav }: Props) => {
     return (
-        <div className='h-[12vh] relative z-10 lg:mt-8'>
-            <div className='flex items-center h-full justify-between w-[90%] xl:w-80% mx-auto'>
+        <div className='h-[12vh] relative z-10 p-4 lg:mt-8'>
+            <div className='flex items-center h-full justify-between w-full max-w-6xl xl:w-80% mx-auto'>
                 {/* Logo Section */}
                 <Logo />
                 {/* Navigation Links for large screen*/}

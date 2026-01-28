@@ -8,7 +8,7 @@ const Services = () => {
     return (
         <div className='pt-20 pb-20 relative'>
             <Image src={'/images/service_bg.png'} width={300} height={300} alt='bgsrc' className='absolute right-0' />
-            <div className='w-[80%] mx-auto'>
+            <div className='w-full mx-auto'>
                 <h1 className='text-[#eeb956] text-lg font-medium tracking-widest'>
                     Our Services
                 </h1>
@@ -22,22 +22,23 @@ const Services = () => {
                         data-aos='fade-right'
                         data-aos-anchor-placement='top-center'
                         data-aos-delay="0">
-                        <ServiceCard image="/images/s1.png" icon="/images/sicon1.png" />
+                        <ServiceCard image="/images/s1.png" icon="/images/sicon1.png"
+                            title='Live-in care' />
                     </div>
                     <div data-aos='fade-right'
                         data-aos-anchor-placement='top-center'
                         data-aos-delay="100">
-                        <ServiceCard image="/images/s2.png" icon="/images/sicon2.png" />
+                        <ServiceCard image="/images/s2.png" icon="/images/sicon2.png" title='Respite care' />
                     </div>
                     <div data-aos='fade-right'
                         data-aos-anchor-placement='top-center'
                         data-aos-delay="200">
-                        <ServiceCard image="/images/s3.png" icon="/images/sicon3.png" />
+                        <ServiceCard image="/images/s3.png" icon="/images/sicon3.png" title='Visiting care' />
                     </div>
                     <div data-aos='fade-right'
                         data-aos-anchor-placement='top-center'
                         data-aos-delay="300">
-                        <ServiceCard image="/images/s4.png" icon="/images/sicon4.png" />
+                        <ServiceCard image="/images/s4.png" icon="/images/sicon4.png" title='Live-in care' />
                     </div>
                 </div>
             </div>

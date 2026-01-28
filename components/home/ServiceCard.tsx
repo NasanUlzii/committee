@@ -4,8 +4,9 @@ import Image from 'next/image'
 type Props = {
     image: string;
     icon: string;
+    title: string;
 }
-const ServiceCard = ({ icon, image }: Props) => {
+const ServiceCard = ({ icon, image, title }: Props) => {
     return (
         <div className='roinded-lg group overflow-hidden bg-white'>
             <Image src={image} width={300} height={179} alt='img' />
@@ -15,8 +16,8 @@ const ServiceCard = ({ icon, image }: Props) => {
                     <Image src={icon} alt='icon' width={60} height={60} />
                 </div>
                 <div className='w-16 mt-6 h-px bg-gray-700'></div>
-                <h1 className='text-gray-700 mt-2 text-sm'>Our Services</h1>
-                <p className='text-gray-700 mb-4 mt-2 font-semibold'>Work from home</p>
+                <h1 className='text-gray-700 mt-2 text-sm'>{title}</h1>
+                <p className='text-gray-700 mb-4 mt-2 font-semibold'>Live-in care</p>
             </div>
         </div>
     )
