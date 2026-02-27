@@ -9,11 +9,11 @@ type props = {
 
 const PicTextFour = ({ linkText, pic, href }: props) => {
   return (
-    <div className="border border-2 border-cyan-600">
+    <div className="">
       <img className="rounded-t-2xl w-full" src={pic} alt="carer" />
       <Link
         href={href}
-        className="font-quicksand text-sm md:text-xl font-thin tracking-wide text-foreground"
+        className="text-gray-800 font-semibold text-[21px] GolosText"
       >
         {linkText}
       </Link>

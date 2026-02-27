@@ -1,43 +1,217 @@
-//import Logo from '@/component/helper/Logo'
-import { NAVLINKS } from '@/constants/Navlinks';
-import { HiBars3BottomRight } from 'react-icons/hi2';
-import Logo from '../helper/Logo';
+"use client";
 
-type Props = {
-    openNav: () => void;
-}
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
-
-const Nav = ({ openNav }: Props) => {
-    return (
-        <div className='h-[12vh] relative z-10 p-4 lg:mt-8'>
-            <div className='flex items-center h-full justify-between w-full max-w-6xl xl:w-80% mx-auto'>
-                {/* Logo Section */}
-                <Logo />
-                {/* Navigation Links for large screen*/}
-                <div className='hidden lg:flex bg-white h-[10vh] md:pl-4 items-center space-x-10'>
-                    {NAVLINKS.map((link) => (
-                        <a
-                            key={link.id}
-                            href={link.url}
-                            className='text-black hover:text-[#9f7c4e] font-semibold transition-all duration-200'
-                        >
-                            <p>{link.label}</p>
-                        </a>
-                    ))}
-                    {/*Button* Call to Action */}
-                    <button className='h-full p-3 bg-[#b69974] text-white cursor-pointer font-bold'>
-                        Create Account
-                    </button>
-                </div>
-                {/* EHamburger ikon for mobile */}
-                <div onClick={openNav} className='lg:hidden'>
-                    <HiBars3BottomRight className='w-9 h-9 text-[#dfc39f] cursor-pointer' />
-                </div>
-
-            </div>
-        </div>
-    );
+type NavLink = {
+  label: string;
+  href: string;
+  dropdown?: { label: string; href: string }[];
 };
 
-export default Nav
+const navLinks: NavLink[] = [
+  // { label: "Home", href: "/" },
+
+  {
+    label: "Асаргааны төрөл",
+    href: "/",
+    dropdown: [
+      { label: "Гэрээр асрах", href: "/live-in-care" },
+      { label: "Түр асаргаа", href: "/respite-care-for-the-elderly" },
+      { label: "Тогтмол асаргаа", href: "/visiting" },
+      { label: "Эмнэлгийн орчинд асрах", href: "/hospital" },
+    ],
+  },
+  {
+    label: "Бусад асаргаа",
+    href: "/",
+    dropdown: [
+      { label: "Дементиа", href: "/dementia-care" },
+      { label: "Өвчин намдаах", href: "/palliative-care" },
+      { label: "Шөнийн асаргаа", href: "/overnight-care" },
+    ],
+  },
+  {
+    label: "Тусламж",
+    href: "/",
+    dropdown: [
+      { label: "Blog", href: "/UI-Components/Blogs" },
+      { label: "Blog Details", href: "/UI-Components/Blogs/2" },
+    ],
+  },
+  {
+    label: "Бидний тухай",
+    href: "#",
+    dropdown: [
+      { label: "About", href: "/UI-Components/Pages/About" },
+      { label: "Team", href: "/UI-Components/Pages/Teams" },
+      { label: "Манай бодлого", href: "/documentation" },
+      { label: "Contact ", href: "/UI-Components/Pages/Contact" },
+      { label: "Page 404", href: "/UI-Components/Pages/Page404" },
+    ],
+  },
+  { label: "Асрагчид", href: "/UI-Components/pages/Carers" },
+  // { label: "Contact Us", href: "/UI-Components/pages/Contact" },
+];
+
+export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
+    {},
+  );
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const toggleDropdown = (label: string) => {
+    setOpenDropdowns((prev) => (prev[label] ? {} : { [label]: true }));
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div
+      className={`w-full transition-all bg-white duration-500 fixed top-0 left-0 z-100 ${
+        isScrolled ? "bg-(--white) shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="flex items-center justify-between px-[8%] lg:px-[12%] py-5">
+        <div className="flex items-center gap-5">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-5xl font-bold Audiowide text-(--black)"
+          >
+            Мэд<span className="text-(--prim)">икс</span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex space-x-6 menu-link relative ms-10">
+            {navLinks.map((link) =>
+              link.dropdown ? (
+                <div key={link.label} className="relative group z-50">
+                  <Link
+                    href={link.href}
+                    className="flex menu-links text-xl items-center gap-1 hover:text-(--prim) transition-all duration-300"
+                  >
+                    {link.label} <i className="ri-arrow-down-s-line"></i>
+                  </Link>
+                  <div className="absolute left-0 top-8 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300 bg-(--white) shadow-xl border border-gray-50/10 rounded-lg z-500 min-w-[180px]">
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-4 py-2 text-md rounded-md hover:text-(--prim) transition-all"
+                      >
+                        <i className="bi bi-gear text-xs"></i> {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-xl hover:text-(--prim) transition-all duration-300"
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
+          </nav>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex items-center gap-4">
+          <button className="hidden lg:flex items-center gap-1">
+            <i className="bi bi-telephone-inbound text-2xl px-3 py-2 rounded-full"></i>
+            <div className="flex flex-col items-start">
+              <p>Утсаар холбогд</p>
+              <h3 className="text-(--prim) GolosText">++976 (99) 13 00882</h3>
+            </div>
+          </button>
+          <Link href="/UI-Components/pages/Contact">
+            <button className="bg-(--prim) text-white font-medium px-6 py-3 rounded-full hover:bg-(--white) hover:text-(--black) border border-transparent hover:border-gray-400 cursor-pointer transition-all duration-300">
+              Үнийн Санал Авах!
+            </button>
+          </Link>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden text-2xl"
+          >
+            <i
+              className={`ri-${
+                mobileMenuOpen ? "close-line" : "menu-3-line"
+              } transition-all duration-300`}
+            ></i>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden bg-(--white) border-t border-gray-400 overflow-hidden transition-all duration-500 ${
+          mobileMenuOpen
+            ? "max-h-[700px] opacity-100 py-4"
+            : "max-h-0 opacity-0 py-0"
+        }`}
+      >
+        <div className="px-[8%] space-y-3">
+          {navLinks.map((link) => (
+            <div
+              key={link.label}
+              className="border border-gray-700/50 rounded-lg overflow-hidden"
+            >
+              {link.dropdown ? (
+                <>
+                  <button
+                    onClick={() => toggleDropdown(link.label)}
+                    className="w-full flex justify-between items-center px-4 py-3 text-left text-(--text) font-medium hover:text-(--prim) transition"
+                  >
+                    {link.label}
+                    <i
+                      className={`ri-arrow-down-s-line transition-transform duration-300 ${
+                        openDropdowns[link.label] ? "rotate-180" : ""
+                      }`}
+                    ></i>
+                  </button>
+                  <div
+                    className={`pl-6 pr-4 bg-gray-800/10 border-t border-gray-700/40 transition-all duration-500 ${
+                      openDropdowns[link.label]
+                        ? "max-h-[300px] opacity-100 py-2"
+                        : "max-h-0 opacity-0 py-0"
+                    }`}
+                  >
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block py-2 font-semibold hover:text-(--prim) transition border-b border-gray-700/60"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="block px-4 py-3 text-(--text) hover:text-(--prim-color) transition font-medium"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  {link.label}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

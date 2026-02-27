@@ -1,29 +1,30 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Quicksand } from "next/font/google";
+import { Cal_Sans, Audiowide, Golos_Text } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import NavContainer from "@/components/Navbar/NavContainer";
 import Footer from "@/components/home/Footer/Footer";
 import ScrollToTop from "@/components/helper/ScrollToTop";
+import ClientLayout from "@/components/ClientLayout";
 
-const fontJakarta = Plus_Jakarta_Sans({
+const audiowide = Audiowide({
+  weight: "400",
+  variable: "--font-audiowide",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-jakarta",
 });
-const fontQuicksand = Quicksand({
+
+const golostext = Golos_Text({
+  weight: "400",
+  variable: "--font-golostext",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-quicksand",
+});
+
+const calsans = Cal_Sans({
+  weight: "400",
+  variable: "--font-calsans",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -40,25 +41,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={cn(
-            "min-h-screen bg-background font-jakarta antialiased",
-            fontJakarta.variable,
-          )}
+          className={`${audiowide.variable} ${golostext.variable} ${calsans.variable}`}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem={false}
-          >
-            <NavContainer />
-            <div className="flex min-h-screen items-center justify-center font-sans ">
-              <main className="flex min-h-screen w-full max-w-6xl flex-col items-center justify-between sm:items-start">
-                {children}
-              </main>
-            </div>
-            <Footer />
-            <ScrollToTop />
-          </ThemeProvider>
+          <ClientLayout>{children}</ClientLayout>
+
+          <ScrollToTop />
         </body>
       </html>
     </ClerkProvider>

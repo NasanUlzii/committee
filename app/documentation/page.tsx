@@ -1,97 +1,121 @@
-import MoreAds from "@/components/home/MoreAds";
-import TopHero from "@/components/home/TopHero";
-import { ScrollText } from "lucide-react";
 import Link from "next/link";
-import React from "react";
-import { HiDocumentText } from "react-icons/hi2";
-import { MdElderly } from "react-icons/md";
+import DocumHero from "../UI-Components/Index/Hero/DocumHero";
 
 function page() {
   return (
     <>
-      <TopHero
-        title="Older’s Documents and Policies"
-        text="Discover the policies that guide how we care, ensuring every Elder experience is safe, fair, and built on trust."
+      <DocumHero
+        title="Манай бодлогьг тодорхойлсон бичиг баримтууд"
+        text="Ахмад настнуудын туршлага бүрийг аюулгүй, шударга, итгэлцэлд суурилсан байлгахад чиглэсэн бидний халамж үйлчилгээний бодлого, зарчмуудтай танилцана уу."
         img="/older/pic15.webp"
-        buttonText=""
-        hasGroupText={false}
-        hasReview={true}
       />
-      <div className="flex flex-col lg:flex-row w-full justify-center gap-6 px-4">
-        <div
-          className={`mt-2 border border-indigo-200 rounded-2xl p-3 space-y-3 h-52`}
-        >
-          <div className="flex flex-row gap-4 ">
-            <p>01</p>
-            <ScrollText className="flex flex-end h-6 w-6 text-[#b69974]" />
+
+      <div className="w-full px-[8%] lg:px-[12%] py-10 mt-0 md:mt-[2%]">
+        <div className="flex flex-col lg:flex-row gap-5 h-full mt-10">
+          <div className="w-full lg:w-1/1">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {/* 1 */}
+              <div
+                key={1}
+                className="pricing-card bg-white shadow p-5 rounded-2xl"
+              >
+                <h2 className="GolosText font-semibold text-3xl mb-5">
+                  Ерөнхий баримтууд
+                </h2>
+
+                <div className="flex flex-col gap-2 my-5">
+                  <p className="text-gray-800 font-semibold text-[21px] GolosText">
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/safeguarding-at-medx">
+                      Мэдикс дахь Хамгааллын Бодлого
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/medx-respect-anti-discrimination-policy">
+                      Хүндлэл ба ялгаварлан гадуурхалтын эсрэг бодлого
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/medx-community-standards">
+                      Олон нийтийн ёс зүйн хэм хэмжээ
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/safety-trust-at-medx">
+                      Итгэлцэл ба аюулгүй байдал
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/complaints-policy">Гомдол хүлээн авах</Link>
+                    <br />
+                  </p>
+                </div>
+              </div>
+              {/* 2 */}
+              <div
+                key={2}
+                className="pricing-card bg-white shadow p-5 rounded-2xl"
+              >
+                <h2 className="GolosText font-semibold text-3xl mb-5">
+                  Асрагчдын баримтууд
+                </h2>
+
+                <div className="flex flex-col gap-2 my-5">
+                  <p className="text-gray-800 font-semibold text-[21px] GolosText">
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/carer-standards">
+                      Ажилчдын хэв хэмжээ
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/what-a-self-employed-carer-can-expect-from-an-medx-placement">
+                      Бие даасан асран хамгаалагч Ахмадын асрамжийн
+                      байгууллагаас юу хүлээж болох вэ
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/what-self-employed-carers-can-expect-from-medx">
+                      Бие даасан асран хамгаалагч компаниас юу хүлээж болох вэ
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/carer-privacy">
+                      Ажилчдын нууцлалын бодлого
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/carer-terms">Ажилчдын нөхцөл ба журам</Link>
+                    <br />
+                  </p>
+                </div>
+              </div>
+              {/* 3 */}
+              <div
+                key={3}
+                className="pricing-card bg-white shadow p-5 rounded-2xl"
+              >
+                <h2 className="GolosText font-semibold text-3xl mb-5">
+                  Хэрэглэгчдийн баримтууд
+                </h2>
+
+                <div className="flex flex-col gap-2 my-5">
+                  <p className="text-gray-800 font-semibold text-[21px] GolosText">
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/documentation/medx-standards">
+                      Хэрэглэгчдэд зориулсан тусламж
+                    </Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/privacy">Нууцлалын бодлого</Link>
+                    <br />
+                    <i className="bi bi-check-circle-fill text-(--prim)"></i>{" "}
+                    <Link href="/terms">Хэрэглэгчдийн нөхцөл ба журам</Link>
+                    <br />
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="font-quicksand-500 text-lg font-semibold">General</p>
-          <p className="font-quicksand text-sm md:text-sm font-thin tracking-wide text-foreground">
-            <Link href="/documentation/safeguarding-at-elder">
-              Elder’s Safeguarding Policy
-            </Link>
-            <br />
-            <Link href="/documentation/elder-respect-anti-discrimination-policy">
-              Respect & Anti-discrimination Policy
-            </Link>
-            <br />
-            <Link href="/documentation/elder-community-standards">
-              Community Standards
-            </Link>
-            <br />
-            <Link href="/documentation/safety-trust-at-elder">
-              Safety & Trust at Elder
-            </Link>
-            <br />
-            <Link href="/complaints-policy">Complaints Policy</Link>
-            <br />
-          </p>
-        </div>
-        <div
-          className={`mt-2 border border-indigo-200 rounded-2xl p-3 space-y-3 h-48`}
-        >
-          <div className="flex flex-row gap-4 ">
-            <MdElderly className="h-6 w-6 text-[#b69974]" />
-            <p className="font-quicksand-500 text-lg font-semibold">Carers</p>
-          </div>
-          <p className="font-quicksand text-sm md:text-sm font-thin tracking-wide text-foreground">
-            <Link href="/documentation/carer-standards">
-              Expected Carer Standards
-            </Link>
-            <br />
-            <Link href="/documentation/what-a-self-employed-carer-can-expect-from-an-elder-placement">
-              What self-employed carers can expect from a placement
-            </Link>
-            <br />
-            <Link href="/documentation/what-self-employed-carers-can-expect-from-elder">
-              What self-employed carers can expect from Elder
-            </Link>
-            <br />
-            <Link href="/carer-privacy">Carer's Privacy Policy</Link>
-            <br />
-            <Link href="/carer-terms">Carer's Terms and Conditions</Link>
-            <br />
-          </p>
-        </div>
-        <div
-          className={`mt-2 border border-indigo-200 rounded-2xl p-3 space-y-3 h-48`}
-        >
-          <div className="flex flex-row gap-4 ">
-            <MdElderly className="h-6 w-6 text-[#b69974]" />
-            <p className="font-quicksand-500 text-lg font-semibold">
-              Customers
-            </p>
-          </div>
-          <p className="font-quicksand text-sm md:text-sm font-thin tracking-wide text-foreground">
-            <Link href="/documentation/elder-standards">
-              Quick guide for customers
-            </Link>
-            <br />
-            <Link href="/privacy">Privacy policy</Link>
-            <br />
-            <Link href="/terms">Terms and Conditions</Link>
-            <br />
-          </p>
         </div>
       </div>
     </>
