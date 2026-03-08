@@ -1,7 +1,8 @@
+import About from "@/components/home/About";
 import React from "react";
 
 function page() {
-  return <div>Pricing</div>;
+  return <About />;
 }
 
 export default page;

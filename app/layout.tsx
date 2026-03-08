@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
-import NavContainer from "@/components/Navbar/NavContainer";
 import Footer from "@/components/home/Footer/Footer";
 import ScrollToTop from "@/components/helper/ScrollToTop";
 import ClientLayout from "@/components/ClientLayout";

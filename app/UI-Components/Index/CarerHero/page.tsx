@@ -2,27 +2,36 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import HeroImg from "../../../../public/older/pic1.webp";
-import { DollarSignIcon } from "lucide-react";
+import {
+  UserRoundSearch,
+  PencilRuler,
+  Smile,
+  MonitorSmartphone,
+} from "lucide-react";
 import Stars from "@/components/Stars";
 const PricingPlansData = [
   {
     id: "1",
-    plan: "Find the right clients",
+    plan: "Асрах зөв хүнээ өөрөө сонго",
+    icon: <UserRoundSearch className="h-6 w-6 text-[#b69974]" />,
     desc: "Browse opportunities and get custom matched to those that best fit your requirements.",
   },
   {
     id: "2",
-    plan: "Get paid on time",
+    plan: "Цалингаа шуурхай аваарай",
+    icon: <PencilRuler className="h-6 w-6 text-[#b69974]" />,
     desc: "Our secure system means no more chasing invoices or delayed payments.",
   },
   {
     id: "3",
-    plan: "Make a real difference",
+    plan: "Хөгжлийн үр дүнгээ үзээрэй",
+    icon: <Smile className="h-6 w-6 text-[#b69974]" />,
     desc: "Help vulnerable people get the quality care they need, in their own homes.",
   },
   {
     id: "4",
-    plan: "Access the ElderHub",
+    plan: "Мэдикс хамт олонтой байгаарай",
+    icon: <MonitorSmartphone className="h-6 w-6 text-[#b69974]" />,
     desc: "Apply for opportunities, chat to families, and build a schedule from our award-winning app",
   },
 ];
@@ -39,19 +48,19 @@ export default function CarerHero() {
                 Trusted Carer Partner
               </span>
               <h1 className="text-6xl lg:text-6xl CalSans my-5">
-                We connect self-employed carers{" "}
+                Бид гэр бүлүүдийг хувиараа хөдөлмөр эрхэлдэг{" "}
                 <span className="text-(--prim)">
-                  with families throughout Great Britain
+                  гэрийн асрагч нартай холбодог платформ юм
                 </span>
               </h1>
-              <p className="text-gray-700 GolosText w-full md:w-[60%]">
-                Are you passionate about transforming the lives of older people?
-                Find out everything you need to know about joining the Elder
-                platform as a self-employed carer.
+              <p className="text-gray-700 GolosText w-full md:w-[80%]">
+                Ахмад настнуудын амьдралыг өөрчлөхөд чин сэтгэлээсээ зорьдог уу?
+                Хувиараа хөдөлмөр эрхлэгч асрагчаар Мэдикс платформд нэгдэхтэй
+                холбоотой бүхий л мэдээллийг эндээс аваарай.
               </p>
               <button className="mt-9 border border-gray-500/50 px-5 py-3 rounded-full GolosText font-semibold hover:bg-(--prim) hover:text-white hover:border-transparent transition-all duration-300 cursor-pointer group">
-                <Link href="/">
-                  Apply Now <i className="bi bi-arrow-right ps-1"></i>
+                <Link href="/trustee">
+                  Бүртгүүлэх <i className="bi bi-arrow-right ps-1"></i>
                 </Link>
               </button>
               <Stars />
@@ -79,8 +88,8 @@ export default function CarerHero() {
                   key={index}
                   className="pricing-card bg-white shadow p-5 rounded-2xl"
                 >
-                  <div className="flex flex-row gap-4 ">
-                    <DollarSignIcon className="h-6 w-6 text-[#b69974]" />
+                  <div className="flex flex-row gap-4  items-center mb-5">
+                    {plan.icon}
                     <h2 className="GolosText font-semibold text-3xl mb-5">
                       {plan.plan}
                     </h2>

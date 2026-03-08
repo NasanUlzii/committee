@@ -10,7 +10,7 @@ export default function Footer() {
               href="/"
               className="text-3xl lg:text-5xl font-bold Audiowide text-white"
             >
-              Oli<span className="text-(--prim)">vion</span>
+              Мэд<span className="text-(--prim)">икс</span>
             </Link>
             <h2 className="text-gray-300 text-lg my-5 GolosText">
               We transform your vision into beautifully crafted spaces.
@@ -22,10 +22,10 @@ export default function Footer() {
           <div className="footer-content py-3">
             <ul className="footer-links flex flex-col">
               <Link
-                href="/UI-Components/Pages/About"
+                href="/about-us"
                 className="text-gray-300 GolosText mb-1 text-xl transition-all duration-300 hover:text-(--prim) hover:ml-2"
               >
-                About Us
+                Бидний тухай
               </Link>
               <Link
                 href="/UI-Components/Pages/Services"
@@ -46,10 +46,10 @@ export default function Footer() {
                 Our Team
               </Link>
               <Link
-                href="/UI-Components/Blogs"
+                href="/documentation"
                 className="text-gray-300 GolosText mb-1 text-xl transition-all duration-300 hover:text-(--prim) hover:ml-2"
               >
-                Blog
+                Манай бодлогууд
               </Link>
               <Link
                 href="/UI-Components/Pages/Contact"
@@ -101,7 +101,7 @@ export default function Footer() {
           </div>
           <div className="footer-content flex flex-col py-3">
             <h2 className="text-3xl text-(--prim) underline  CalSans mb-3">
-              +(084) 456-0789
+              +(976) 99-130882
             </h2>
             <h4 className="text-gray-300 GolosText text-2xl">
               Support@example.com
@@ -126,11 +126,11 @@ export default function Footer() {
           <p className="text-gray-300 text-lg">
             © Copyright 2025. All Rights Reserved By
             <Link
-              href="https://uicode.in/"
+              href="http://www.medics.mn/"
               className="transition-all duration-300 text-white text-xl hover:text-(--prim)"
             >
               {" "}
-              uicode
+              Мэдикс
             </Link>
           </p>
         </div>

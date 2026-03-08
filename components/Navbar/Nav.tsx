@@ -43,14 +43,14 @@ const navLinks: NavLink[] = [
     label: "Бидний тухай",
     href: "#",
     dropdown: [
-      { label: "About", href: "/UI-Components/Pages/About" },
-      { label: "Team", href: "/UI-Components/Pages/Teams" },
+      { label: "Дэлгэрэнгүй", href: "/about-us" },
+      { label: "Манай баг", href: "/teams" },
       { label: "Манай бодлого", href: "/documentation" },
-      { label: "Contact ", href: "/UI-Components/Pages/Contact" },
-      { label: "Page 404", href: "/UI-Components/Pages/Page404" },
+      { label: "Холбогдох ", href: "/contact-us" },
+      { label: "Мэдээлэл байхгүй", href: "/UI-Components/Pages/Page404" },
     ],
   },
-  { label: "Асрагчид", href: "/UI-Components/pages/Carers" },
+  { label: "Асрагчид", href: "/carers" },
   // { label: "Contact Us", href: "/UI-Components/pages/Contact" },
 ];
 
